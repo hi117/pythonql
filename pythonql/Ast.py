@@ -115,21 +115,9 @@ def convert_ast(a):
     elif isinstance(a,_ast.Dict):
         return dict_e([convert_ast(x) for x in a.keys],[convert_ast(x) for x in a.values])
     
-    elif isinstance(a,_ast.Str):
-        return str_literal(a.s)
-    
-    elif isinstance(a,_ast.Num):
-        return num_literal(a.n)
-    
     elif isinstance(a,_ast.Name):
         return name_e(a.id)
     
-    elif isinstance(a,_ast.NameConstant):
-        if type(a.value) == bool:
-            return bool_literal(a.value)
-        else:
-            return none_literal()
-
 all_ast_types = [boolOp_e,
                  binaryOp_e,
                  unaryOp_e,
